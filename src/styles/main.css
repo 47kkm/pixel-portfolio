@@ -1,0 +1,160 @@
+:root {
+  --bg: #f3eddf;
+  --dot: rgba(38, 33, 57, .08);
+  --panel: #fffdf6;
+  --panel-2: #f6eedb;
+  --ink: #262139;
+  --ink-2: #5d5672;
+  --line: #262139;
+  --line-soft: #ddd3bf;
+  --shadow: #262139;
+  --accent: #3157e8;
+  --accent-2: #2443c4;
+  --accent-soft: #e4e9fb;
+  --on-accent: #ffffff;
+  --hl: #ffe27a;
+  --sky-1: #79c4ff;
+  --sky-2: #b9e3ff;
+  --wall: #e4e8f1;
+  --wall-2: #dce1ec;
+  --desk-top: #dcb894;
+  --desk: #b98d65;
+  --desk-2: #a47a55;
+  --frame: #fffdf6;
+  --bezel: #ebe8f3;
+  --note: #fff1b8;
+  /* 프로젝트 분류 색: 강조색 파랑 주변의 차분한 한 계열(파랑·라벤더·청록·회청) */
+  --tone-blue-bg: #e2e8fb; --tone-blue-ink: #3a52b0;
+  --tone-violet-bg: #ebe6f9; --tone-violet-ink: #6248a8;
+  --tone-teal-bg: #dcefec; --tone-teal-ink: #2c6e67;
+  --tone-slate-bg: #e3e9f0; --tone-slate-ink: #45607a;
+  --px: 'Galmuri11', monospace;
+  --sans: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
+  --bw: 3px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141228; --dot: rgba(255, 255, 255, .05); --panel: #221e3d; --panel-2: #2b2650;
+    --ink: #f1edff; --ink-2: #b9b2d6; --line: #e9e4ff; --line-soft: #3d3766; --shadow: #05040c;
+    --accent: #7c97ff; --accent-2: #5b78f0; --accent-soft: #2f3563; --on-accent: #0f0d22; --hl: #5a4a12;
+    --sky-1: #121842; --sky-2: #2a3277; --wall: #1e1b37; --wall-2: #23203f;
+    --desk-top: #6e5340; --desk: #523d2c; --desk-2: #45331f; --frame: #3a3557; --bezel: #9d97b8; --note: #ddd194;
+    --tone-blue-bg: #2b3463; --tone-blue-ink: #b7c4ff; --tone-violet-bg: #372e5f; --tone-violet-ink: #cfc0ff;
+    --tone-teal-bg: #1f4243; --tone-teal-ink: #a3dbd3; --tone-slate-bg: #2b3749; --tone-slate-ink: #b8cadd;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141228; --dot: rgba(255, 255, 255, .05); --panel: #221e3d; --panel-2: #2b2650;
+  --ink: #f1edff; --ink-2: #b9b2d6; --line: #e9e4ff; --line-soft: #3d3766; --shadow: #05040c;
+  --accent: #7c97ff; --accent-2: #5b78f0; --accent-soft: #2f3563; --on-accent: #0f0d22; --hl: #5a4a12;
+  --sky-1: #121842; --sky-2: #2a3277; --wall: #1e1b37; --wall-2: #23203f;
+    --desk-top: #6e5340; --desk: #523d2c; --desk-2: #45331f; --frame: #3a3557; --bezel: #9d97b8; --note: #ddd194;
+  --tone-blue-bg: #2b3463; --tone-blue-ink: #b7c4ff; --tone-violet-bg: #372e5f; --tone-violet-ink: #cfc0ff;
+  --tone-teal-bg: #1f4243; --tone-teal-ink: #a3dbd3; --tone-slate-bg: #2b3749; --tone-slate-ink: #b8cadd;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-padding-top: 72px; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 14px 14px;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px dashed var(--accent); outline-offset: 5px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-inline: 24px; }
+
+/* 도트 테두리: 모서리를 한 칸씩 깎은 선 + 계단 그림자 */
+.px-box {
+  position: relative;
+  background: var(--panel);
+  box-shadow:
+    0 calc(var(--bw) * -1) 0 0 var(--line), 0 var(--bw) 0 0 var(--line),
+    calc(var(--bw) * -1) 0 0 0 var(--line), var(--bw) 0 0 0 var(--line),
+    var(--bw) calc(var(--bw) * 2) 0 0 var(--shadow), calc(var(--bw) * 2) var(--bw) 0 0 var(--shadow);
+}
+/* 가벼운 카드: 평소엔 연한 선만, 링크 카드는 마우스를 올리면 도트 테두리와 그림자가 생긴다.
+   굵은 .px-box는 첫 화면 장면·프로필·대화창·상세 본문 같은 큰 판에만 쓴다. */
+.px-card {
+  position: relative;
+  background: var(--panel);
+  box-shadow: 0 0 0 2px var(--line-soft);
+}
+a.px-card { text-decoration: none; transition: transform 80ms steps(2); }
+a.px-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 0 0 0 2px var(--line), 4px 4px 0 2px var(--shadow);
+}
+.px-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow:
+    0 calc(var(--bw) * -1) 0 0 var(--line), 0 var(--bw) 0 0 var(--line),
+    calc(var(--bw) * -1) 0 0 0 var(--line), var(--bw) 0 0 0 var(--line),
+    var(--bw) calc(var(--bw) * 2) 0 0 var(--shadow), calc(var(--bw) * 2) var(--bw) 0 0 var(--shadow);
+  transition: transform 80ms steps(2);
+}
+.px-btn.primary { background: var(--accent); color: var(--on-accent); }
+.px-btn:hover { transform: translate(-1px, -1px); }
+.px-btn:active {
+  transform: translate(var(--bw), var(--bw));
+  box-shadow:
+    0 calc(var(--bw) * -1) 0 0 var(--line), 0 var(--bw) 0 0 var(--line),
+    calc(var(--bw) * -1) 0 0 0 var(--line), var(--bw) 0 0 0 var(--line);
+}
+
+/* 도트 글꼴은 로고·이름·섹션 제목과 카테고리 이름(.label)에만 쓴다 */
+.label { font-family: var(--px); font-size: 12px; letter-spacing: .06em; color: var(--accent); }
+.tag {
+  display: inline-block;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.8;
+  color: var(--ink-2);
+  background: var(--panel-2);
+}
+.tag.tone-blue { background: var(--tone-blue-bg); color: var(--tone-blue-ink); }
+.tag.tone-violet { background: var(--tone-violet-bg); color: var(--tone-violet-ink); }
+.tag.tone-teal { background: var(--tone-teal-bg); color: var(--tone-teal-ink); }
+.tag.tone-slate { background: var(--tone-slate-bg); color: var(--tone-slate-ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.chips li { padding: 1px 8px; font-size: 12px; color: var(--ink-2); background: var(--panel-2); }
+
+.section { padding-block: 56px 0; }
+
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .32s steps(4), transform .32s steps(4); }
+.reveal.in { opacity: 1; transform: none; }
+
+@keyframes bob { 50% { transform: translateY(-3px); } }
+@keyframes blink { 50% { opacity: 0; } }
+
+@media (max-width: 640px) {
+  .wrap { padding-inline: 16px; }
+  .section { padding-block-start: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}
