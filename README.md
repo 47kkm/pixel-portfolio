@@ -20,7 +20,7 @@ sh deploy.sh
 ```
 
 - 배포 주소는 `.env`의 `VITE_SITE_URL`(지금은 `https://47kkm.github.io/pixel-portfolio/`). 링크 미리보기의 주소와 이미지에 쓰인다.
-- 미리보기 이미지는 `public/og.png`(1200×630)다. 첫 화면이 바뀌면 다시 찍어 둔다.
+- 미리보기 이미지는 `public/og.png`(1200×630)다. 바꾸면 `index.html`의 `og.png?v=` 숫자를 올린다. 카카오톡이 이미지를 주소 기준으로 오래 기억해서, 주소가 같으면 예전 이미지가 계속 나온다.
 
 ## 내용은 어디서 오나
 
